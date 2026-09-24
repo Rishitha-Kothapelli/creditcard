@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Card Fraud Detection Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <h1>Credit Card Fraud Detection</h1>
+    <p class="subtitle">Threshold &amp; Confusion Matrix Dashboard</p>
+  </header>
+
+  <main class="container">
+
+    <!-- ERROR BANNER -->
+    <div id="error-banner" class="error-banner hidden"></div>
+
+    <!-- THRESHOLD SECTION -->
+    <section class="card threshold-card">
+      <h2>Fraud Detection Threshold</h2>
+      <div class="threshold-value" id="threshold-value">0.50</div>
+
+      <input
+        type="range"
+        id="threshold-slider"
+        min="0.10"
+        max="0.90"
+        step="0.01"
+        value="0.50"
+      />
+
+      <div class="slider-labels">
+        <span>0.10</span>
+        <span>0.90</span>
+      </div>
+
+      <p class="threshold-hint">
+        Lower threshold &rarr; more transactions may be classified as fraud (higher recall, more false positives).<br />
+        Higher threshold &rarr; fewer transactions may be classified as fraud (higher precision, lower recall).
+      </p>
+    </section>
+
+    <!-- METRICS SECTION -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Accuracy</div>
+        <div class="metric-value" id="accuracy-value">--.--%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Precision</div>
+        <div class="metric-value" id="precision-value">--.--%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Recall</div>
+        <div class="metric-value" id="recall-value">--.--%</div>
+      </div>
+    </section>
+
+    <!-- CONFUSION MATRIX COUNT CARDS -->
+    <section class="metrics-grid">
+      <div class="metric-card count-card tn">
+        <div class="metric-label">True Negative</div>
+        <div class="metric-value" id="tn-value">--</div>
+      </div>
+      <div class="metric-card count-card fp">
+        <div class="metric-label">False Positive</div>
+        <div class="metric-value" id="fp-value">--</div>
+      </div>
+      <div class="metric-card count-card fn">
+        <div class="metric-label">False Negative</div>
+        <div class="metric-value" id="fn-value">--</div>
+      </div>
+      <div class="metric-card count-card tp">
+        <div class="metric-label">True Positive</div>
+        <div class="metric-value" id="tp-value">--</div>
+      </div>
+    </section>
+
+    <!-- CONFUSION MATRIX TABLE -->
+    <section class="card matrix-card">
+      <h2>Confusion Matrix</h2>
+      <table class="confusion-matrix">
+        <thead>
+          <tr>
+            <th class="corner"></th>
+            <th colspan="2" class="predicted-header">Predicted</th>
+          </tr>
+          <tr>
+            <th class="corner"></th>
+            <th>Genuine</th>
+            <th>Fraud</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="actual-header" rowspan="2">Actual</th>
+            <th class="row-label">Genuine</th>
+            <td class="cell tn-cell" id="matrix-tn">--</td>
+            <td class="cell fp-cell" id="matrix-fp">--</td>
+          </tr>
+          <tr>
+            <th class="row-label">Fraud</th>
+            <td class="cell fn-cell" id="matrix-fn">--</td>
+            <td class="cell tp-cell" id="matrix-tp">--</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Logistic Regression model trained once &middot; threshold applied live from stored probabilities</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

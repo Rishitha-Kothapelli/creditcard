@@ -1,0 +1,20 @@
+DATASET SOURCE
+==============
+
+creditcard.csv in this project is REAL transaction data: a 56,874-row,
+20% random sample of the original Kaggle "Credit Card Fraud Detection"
+dataset (mlg-ulb/creditcardfraud), containing 102 real fraud cases
+(~0.18% fraud rate, matching the original's imbalance).
+
+Source: https://github.com/IBM/xgboost-smote-detect-fraud (data/creditcard.csv)
+Original citation: Andrea Dal Pozzolo, Olivier Caelen, Reid A. Johnson and
+Gianluca Bontempi. "Calibrating Probability with Undersampling for
+Unbalanced Classification." IEEE Symposium on Computational Intelligence
+and Data Mining (CIDM), 2015.
+
+The model in model/ was already trained on this file, so you can run
+the app immediately without retraining. If you'd like to use the FULL
+284,807-row original dataset instead, download it from:
+    https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+replace creditcard.csv with it, then re-run:
+    python train_model.py
